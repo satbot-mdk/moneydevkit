@@ -11,10 +11,20 @@ Add payments to any web app in under 5 minutes. Two supported frameworks: Next.j
 
 ### 1. Get credentials
 
-**Option A — MCP (if available):**
-Add the MCP server, then use `create-app` to mint credentials:
+**Option A — MCP:**
+
+There are two MCP servers:
+- **Unauthenticated** (`/mcp/`) — for creating a new account and minting credentials
+- **Authenticated** (`/mcp/account/`) — for managing your account after setup (requires OAuth)
+
+To create a new account:
 ```
 claude mcp add moneydevkit --transport http https://mcp.moneydevkit.com/mcp/
+```
+
+After you have credentials, switch to the authenticated MCP for full account control:
+```
+claude mcp add moneydevkit --transport http https://mcp.moneydevkit.com/mcp/account/
 ```
 
 **Option B — CLI:**
@@ -82,7 +92,7 @@ await createCheckout({
 
 ## MCP tools
 
-If the [moneydevkit MCP server](https://mcp.moneydevkit.com/mcp) is connected, these tools are available:
+If the [moneydevkit MCP server](https://mcp.moneydevkit.com/mcp/account/) is connected (authenticated), these tools are available:
 
 - `create-app` / `list-apps` / `update-app` / `rotate-api-key` — manage apps
 - `create-product` / `list-products` / `get-product` / `update-product` / `delete-product`
